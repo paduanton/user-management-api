@@ -1,9 +1,21 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { diskStorage } from 'multer';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { UsersRepository } from './repository/users.repository';
 import { AvatarRepository } from './repository/avatar.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateAvatarDto } from './dto/create-avatar.dto';
 import { UsersService } from './services/users.services';
+import { Express } from 'express';
 import * as fs from 'fs';
 import * as https from 'https';
 
@@ -15,14 +27,32 @@ export class UsersController {
     private avatarRepository: AvatarRepository,
   ) {}
 
+  @Get()
+  findAll() {
+    return this.usersRepository.findAll();
+  }
+
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersRepository.create(createUserDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.userService.getUser(id);
+  @Post(':id/photo')
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './static',
+        filename: editFileName,
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  uploadFile(
+    @Param('id') id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    console.log('id', id);
+    console.log('file', file);
   }
 
   @Get(':id/avatar')

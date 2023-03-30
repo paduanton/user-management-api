@@ -1,27 +1,55 @@
-import { IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+  IsDateString,
+} from 'class-validator';
 
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
-  @MaxLength(300)
-  email: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(5)
-  @MaxLength(300)
+  @MaxLength(100)
   first_name: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
-  @MaxLength(300)
+  @MaxLength(100)
   last_name: string;
+
+  @IsDateString()
+  @IsNotEmpty()
+  birth_date: Date;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
-  @MaxLength(500)
-  avatar: string;
+  @MaxLength(150)
+  street: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(100)
+  city: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(100)
+  state: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(200)
+  job_title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(5)
+  @MaxLength(20)
+  phone_number: string;
 }
