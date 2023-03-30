@@ -7,5 +7,9 @@ export class CreateAvatarDto {
 
   @IsString()
   @IsNotEmpty()
+  file_name: string;
+
+  @IsString()
+  @IsNotEmpty()
   file_system_path: string;
 }

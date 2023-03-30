@@ -1,4 +1,7 @@
-/static
+/static/*
+
+!static/default-profile-photo.jpg
+!static/default-profile-photo.jpg
 
 # Logs
 logs

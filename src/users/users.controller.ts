@@ -1,10 +1,10 @@
 import {
-  Controller,
   Get,
   Post,
   Body,
   Param,
-  Delete,
+  Controller,
+  Response,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -69,14 +69,20 @@ export class UsersController {
   ) {
     const avatar: CreateAvatarDto = {
       user_id: id,
+      file_name: file.filename,
       file_system_path: file.path,
     };
     return this.avatarRepository.create(avatar);
   }
 
   @Get(':id/photo')
-  async findAvatar(@Param('id') id: number) {
+  async findAvatar(@Param('id') id: number, @Response() response) {
     const avatar = await this.avatarRepository.findOneByUserId(id);
-    return avatar;
+
+    if (avatar) {
+      return response.sendFile(avatar.file_name, { root: './static' });
+    }
+
+    return response.sendFile('default-profile-photo.jpg', { root: './static' });
   }
 }

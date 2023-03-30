@@ -12,6 +12,9 @@ export class Avatar {
 
   @Prop({ required: true })
   file_system_path: string;
+
+  @Prop({ required: true })
+  file_name: string;
 }
 
 export const AvatarSchema = SchemaFactory.createForClass(Avatar);
