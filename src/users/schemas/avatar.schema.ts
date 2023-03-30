@@ -11,9 +11,6 @@ export class Avatar {
   user_id: string;
 
   @Prop({ required: true })
-  hash: string;
-
-  @Prop({ required: true })
   file_system_path: string;
 }
 

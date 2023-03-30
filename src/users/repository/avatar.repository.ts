@@ -19,8 +19,4 @@ export class AvatarRepository {
   findOneByUserId(userId: number) {
     return this.avatarModel.findOne({ user_id: userId });
   }
-
-  async removeByUserId(id: number) {
-    return this.avatarModel.findOneAndRemove({ user_id: id });
-  }
 }
