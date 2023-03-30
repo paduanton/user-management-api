@@ -5,15 +5,6 @@ To start the project, create an `.env` file at the root of the project
 ```bash
 APP_PORT=3000
 MONGODB_URL=mongodb://mongodb:27017/users
-USER_API_BASE_URL=https://reqres.in/api
-```
-
-If you directly using your working machine and MongoDB installed on your machine
-
-```bash
-APP_PORT=3000
-MONGODB_URL=mongodb://mongodb:27017/users
-USER_API_BASE_URL=https://reqres.in/api
 ```
 
 You can start the project using the following command
@@ -22,17 +13,11 @@ You can start the project using the following command
 docker-compose up --build
 ```
 
-OR
-
-```bash
-yarn start:dev
-```
-
 ## Endpoints
 
 In **all** http calls you must have the header `Accept:application/json`. In http requests made with http POST verb you need to set the header `Content-Type:application/json`.
 
-On the root dir there is a file called user-service.postman_collection.json that you can import in your postman, but below there is all the info about the endpoints anyway:
+On the root dir there is a file called user-service-v2.postman_collection.json that you can import in your postman to see the API requests, but here isis all the info about the endpoints anyway:
 
 
 POST `http://localhost:3000/api/user)`:
@@ -40,51 +25,77 @@ POST `http://localhost:3000/api/user)`:
 BODY:
 ```json
 {
-    "email": "george.bluth@reqres.in",
-    "first_name": "George",
-    "last_name": "Bluth",
-    "profilePhoto_url": "https://reqres.in/img/faces/1-image.jpg"
+    "first_name": "Antonio",
+    "last_name": "Padua",
+    "birth_date": "1999-09-22",
+    "street": "Av Protasio Alves",
+    "city": "Porto Alegre",
+    "state": "Rio Grande do Sul",
+    "job_title": "Software Engineer",
+    "phone_number": "5551986179111"
 }
 ```
 
-GET `http://localhost:3000/api/user/1)`:
+GET `http://localhost:3000/api/user/)`:
 
 RESPONSE BODY:
 ```json
-{
-    "email": "george.bluth@reqres.in",
-    "first_name": "George",
-    "last_name": "Bluth",
-    "profilePhoto": "https://reqres.in/img/faces/1-image.jpg"
-}
+[
+    {
+        "_id": "6425f4ac0801e6d66b99daaf",
+        "first_name": "Antonio",
+        "last_name": "Padua",
+        "birth_date": "1999-09-22",
+        "street": "Av Protasio Alves",
+        "city": "Porto Alegre",
+        "state": "Rio Grande do Sul",
+        "job_title": "Software Engineer",
+        "phone_number": "5551986179111",
+        "created_at": "2023-03-30T20:44:28.615Z",
+        "updated_at": "2023-03-30T20:44:28.615Z",
+        "__v": 0
+    },
+    {
+        "_id": "6425f68e070f17396a86727f",
+        "first_name": "Antonio",
+        "last_name": "Padua",
+        "birth_date": "1999-09-22",
+        "street": "Av Protasio Alves",
+        "city": "Porto Alegre",
+        "state": "Rio Grande do Sul",
+        "job_title": "Software Engineer",
+        "phone_number": "5551986179111",
+        "created_at": "2023-03-30T20:52:30.671Z",
+        "updated_at": "2023-03-30T20:52:30.671Z",
+        "__v": 0
+    }
+]
 ```
 
-GET `http://localhost:3000/api/user/1/profilePhoto)`:
+POST `http://localhost:3000/api/user/:userId/photo)`:
 
-RESPONSE BODY:
-```json
+`Content-Type:multipart/form-data`
+
 {
-    "_id": "641e7fee16d46bf32986fe30",
-    "user_id": "1",
-    "hash": "data:imagLjTA487XafqcyeK7xxctd/2WF2n3ICufWHnxwm4I+IIpfUgpoU+lCcRQuetpAU+6WWO6jv8ANMF4qZ90D6HQfgP3L/FJ5x9kSn8VLZCPh2//2Q==",
-    "file_system_path": "./static/1.jpg",
-    "created_at": "2023-03-25T05:00:30.393Z",
-    "updated_at": "2023-03-25T05:00:30.393Z",
+    image: (your image)
+}
+```json
+[
+    {
+    "user_id": "6425f4ac0801e6d66b99daaf",
+    "file_system_path": "static/6425f4ac0801e6d66b99daaf.png",
+    "file_name": "6425f4ac0801e6d66b99daaf.png",
+    "_id": "6425f691070f17396a867281",
+    "created_at": "2023-03-30T20:52:33.087Z",
+    "updated_at": "2023-03-30T20:52:33.087Z",
     "__v": 0
 }
+]
 ```
 
-DELETE  `http://localhost:3000/api/user/1/profilePhoto)`:
 
-RESPONSE BODY:
-```json
-{
-    "_id": "641e7fee16d46bf32986fe30",
-    "user_id": "1",
-    "hash": "data:imagLjTA487XafqcyeK7xxctd/2WF2n3ICufWHnxwm4I+IIpfUgpoU+lCcRQuetpAU+6WWO6jv8ANMF4qZ90D6HQfgP3L/FJ5x9kSn8VLZCPh2//2Q==",
-    "file_system_path": "./static/1.jpg",
-    "created_at": "2023-03-25T05:00:30.393Z",
-    "updated_at": "2023-03-25T05:00:30.393Z",
-    "__v": 0
-}
-```
+GET `http://localhost:3000/api/user/:userId/photo)`:
+
+`Content-Type:multipart/form-data`
+
+BODY: (your image);

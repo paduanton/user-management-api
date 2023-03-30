@@ -14,14 +14,12 @@ import { UsersRepository } from './repository/users.repository';
 import { ProfilePhotoRepository } from './repository/profile-photo.repository';
 import { UserDto } from './dto/user.dto';
 import { CreateProfilePhotoDto } from './dto/profile-photo.dto';
-import { UsersService } from './services/users.services';
 import { Express } from 'express';
 
 @Controller('api/user')
 export class UsersController {
   constructor(
     private readonly usersRepository: UsersRepository,
-    private userService: UsersService,
     private profilePhotoRepository: ProfilePhotoRepository,
   ) {}
 
