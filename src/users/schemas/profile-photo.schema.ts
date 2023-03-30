@@ -1,12 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type AvatarDocument = Avatar & Document;
+export type ProfilePhotoDocument = ProfilePhoto & Document;
 
 @Schema({
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
 })
-export class Avatar {
+export class ProfilePhoto {
   @Prop({ required: true })
   user_id: string;
 
@@ -17,4 +17,4 @@ export class Avatar {
   file_name: string;
 }
 
-export const AvatarSchema = SchemaFactory.createForClass(Avatar);
+export const ProfilePhotoSchema = SchemaFactory.createForClass(ProfilePhoto);

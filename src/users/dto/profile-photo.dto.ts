@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateAvatarDto {
+export class CreateProfilePhotoDto {
   @IsString()
   @IsNotEmpty()
   user_id: string;

@@ -43,7 +43,7 @@ BODY:
     "email": "george.bluth@reqres.in",
     "first_name": "George",
     "last_name": "Bluth",
-    "avatar_url": "https://reqres.in/img/faces/1-image.jpg"
+    "profilePhoto_url": "https://reqres.in/img/faces/1-image.jpg"
 }
 ```
 
@@ -55,11 +55,11 @@ RESPONSE BODY:
     "email": "george.bluth@reqres.in",
     "first_name": "George",
     "last_name": "Bluth",
-    "avatar": "https://reqres.in/img/faces/1-image.jpg"
+    "profilePhoto": "https://reqres.in/img/faces/1-image.jpg"
 }
 ```
 
-GET `http://localhost:3000/api/user/1/avatar)`:
+GET `http://localhost:3000/api/user/1/profilePhoto)`:
 
 RESPONSE BODY:
 ```json
@@ -74,7 +74,7 @@ RESPONSE BODY:
 }
 ```
 
-DELETE  `http://localhost:3000/api/user/1/avatar)`:
+DELETE  `http://localhost:3000/api/user/1/profilePhoto)`:
 
 RESPONSE BODY:
 ```json

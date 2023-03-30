@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UsersRepository } from './repository/users.repository';
-import { AvatarRepository } from './repository/avatar.repository';
+import { ProfilePhotoRepository } from './repository/profile-photo.repository';
 
 import { UsersService } from './services/users.services';
 import { HttpModule } from '@nestjs/axios';
@@ -8,7 +8,10 @@ import { HttpModule } from '@nestjs/axios';
 import { UsersController } from './users.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
-import { Avatar, AvatarSchema } from './schemas/avatar.schema';
+import {
+  ProfilePhoto,
+  ProfilePhotoSchema,
+} from './schemas/profile-photo.schema';
 
 @Module({
   imports: [
@@ -19,12 +22,12 @@ import { Avatar, AvatarSchema } from './schemas/avatar.schema';
         schema: UserSchema,
       },
       {
-        name: Avatar.name,
-        schema: AvatarSchema,
+        name: ProfilePhoto.name,
+        schema: ProfilePhotoSchema,
       },
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersRepository, AvatarRepository, UsersService],
+  providers: [UsersRepository, ProfilePhotoRepository, UsersService],
 })
 export class UsersModule {}

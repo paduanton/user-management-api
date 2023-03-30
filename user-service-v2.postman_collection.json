@@ -1,32 +1,11 @@
 {
 	"info": {
-		"_postman_id": "65ab6b2e-6b0c-497a-9471-7afc107e223e",
-		"name": "user-service",
+		"_postman_id": "3516fea0-4e6f-4541-9b55-b37c2aa4b151",
+		"name": "user-service-v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "5889563"
 	},
 	"item": [
-		{
-			"name": "https://reqres.in/api/users",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://reqres.in/api/users/11",
-					"protocol": "https",
-					"host": [
-						"reqres",
-						"in"
-					],
-					"path": [
-						"api",
-						"users",
-						"11"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "http://localhost:3000/api/user",
 			"request": {
@@ -40,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"george.bluth@reqres.in\",\n    \"first_name\": \"George\",\n    \"last_name\": \"Bluth\",\n    \"avatar\": \"https://reqres.in/img/faces/1-image.jpg\"\n}",
+					"raw": "{\n    \"first_name\": \"Antonio\",\n    \"last_name\": \"Padua\",\n    \"birth_date\": \"1999-09-22\",\n    \"street\": \"Av Protasio Alves\",\n    \"city\": \"Porto Alegre\",\n    \"state\": \"Rio Grande do Sul\",\n    \"job_title\": \"Software Engineer\",\n    \"phone_number\": \"5551986179111\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -63,7 +42,46 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/api/user/{userId}",
+			"name": "http://localhost:3000/api/user/{userId/photo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/home/paduanton/Downloads/image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/user/6425f4ac0801e6d66b99daaf/photo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"6425f4ac0801e6d66b99daaf",
+						"photo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/user",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -92,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/user/11",
+					"raw": "http://localhost:3000/api/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -100,15 +118,14 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"user",
-						"11"
+						"user"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/api/user/{userId}/avatar",
+			"name": "http://localhost:3000/api/user/{userId}/photo",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -125,7 +142,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/user/1/avatar",
+					"raw": "http://localhost:3000/api/user/6425f4ac0801e6d66b99daaf/photo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -134,42 +151,8 @@
 					"path": [
 						"api",
 						"user",
-						"1",
-						"avatar"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/user/{userId}/avatar",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/api/user/12/avatar",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"12",
-						"avatar"
+						"6425f4ac0801e6d66b99daaf",
+						"photo"
 					]
 				}
 			},

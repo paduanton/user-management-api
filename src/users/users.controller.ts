@@ -11,20 +11,18 @@ import {
 import { diskStorage } from 'multer';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UsersRepository } from './repository/users.repository';
-import { AvatarRepository } from './repository/avatar.repository';
-import { CreateUserDto } from './dto/create-user.dto';
-import { CreateAvatarDto } from './dto/create-avatar.dto';
+import { ProfilePhotoRepository } from './repository/profile-photo.repository';
+import { UserDto } from './dto/user.dto';
+import { CreateProfilePhotoDto } from './dto/profile-photo.dto';
 import { UsersService } from './services/users.services';
 import { Express } from 'express';
-import * as fs from 'fs';
-import * as https from 'https';
 
 @Controller('api/user')
 export class UsersController {
   constructor(
     private readonly usersRepository: UsersRepository,
     private userService: UsersService,
-    private avatarRepository: AvatarRepository,
+    private profilePhotoRepository: ProfilePhotoRepository,
   ) {}
 
   @Get()
@@ -33,7 +31,7 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  create(@Body() createUserDto: UserDto) {
     return this.usersRepository.create(createUserDto);
   }
 
@@ -67,20 +65,20 @@ export class UsersController {
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    const avatar: CreateAvatarDto = {
+    const profilePhoto: CreateProfilePhotoDto = {
       user_id: id,
       file_name: file.filename,
       file_system_path: file.path,
     };
-    return this.avatarRepository.create(avatar);
+    return this.profilePhotoRepository.create(profilePhoto);
   }
 
   @Get(':id/photo')
-  async findAvatar(@Param('id') id: number, @Response() response) {
-    const avatar = await this.avatarRepository.findOneByUserId(id);
+  async findProfilePhoto(@Param('id') id: number, @Response() response) {
+    const profilePhoto = await this.profilePhotoRepository.findOneByUserId(id);
 
-    if (avatar) {
-      return response.sendFile(avatar.file_name, { root: './static' });
+    if (profilePhoto) {
+      return response.sendFile(profilePhoto.file_name, { root: './static' });
     }
 
     return response.sendFile('default-profile-photo.jpg', { root: './static' });

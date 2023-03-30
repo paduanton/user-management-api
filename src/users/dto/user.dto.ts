@@ -6,7 +6,7 @@ import {
   IsDateString,
 } from 'class-validator';
 
-export class CreateUserDto {
+export class UserDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(5)
