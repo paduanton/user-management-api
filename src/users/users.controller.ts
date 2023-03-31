@@ -64,13 +64,13 @@ export class UsersController {
       },
     }),
   )
-  uploadFile(
+  async uploadFile(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
     @Req() request,
     @Response() response
   ) {
-
+    console.log("aqui")
     if(request?.fileValidationError) {
       return response.status(400).send(
         {
@@ -83,7 +83,9 @@ export class UsersController {
       file_name: file.filename,
       file_system_path: file.path,
     };
-    return this.profilePhotoRepository.create(profilePhoto);
+    await this.profilePhotoRepository.create(profilePhoto);
+
+    return response.status(201).send(profilePhoto)
   }
 
   @Get(':id/photo')

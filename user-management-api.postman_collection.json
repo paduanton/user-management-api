@@ -65,7 +65,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/user/6425f4ac0801e6d66b99daaf/photo",
+					"raw": "http://localhost:3000/api/v1/user/642754347d73f278789ddd5a/photo",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,7 +75,7 @@
 						"api",
 						"v1",
 						"user",
-						"6425f4ac0801e6d66b99daaf",
+						"642754347d73f278789ddd5a",
 						"photo"
 					]
 				}
