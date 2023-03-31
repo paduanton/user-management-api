@@ -1,7 +1,12 @@
-# User Service
+# User Management API
 
-To start the project, create an `.env` file at the root of the project
+To start the project, create an `.env` file at the root of the project (there is a .env.example in the root dir that you can use as example)
 
+```bash
+cp .env.example .env
+```
+
+-->
 ```bash
 APP_PORT=3000
 MONGODB_URL=mongodb://mongodb:27017/users
