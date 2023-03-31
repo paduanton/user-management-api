@@ -16,7 +16,7 @@ import { UserDto } from './dto/user.dto';
 import { CreateProfilePhotoDto } from './dto/profile-photo.dto';
 import { Express } from 'express';
 
-@Controller('api/user')
+@Controller('api/v1/user')
 export class UsersController {
   constructor(
     private readonly usersRepository: UsersRepository,
