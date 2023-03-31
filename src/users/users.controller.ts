@@ -5,6 +5,7 @@ import {
   Param,
   Controller,
   Response,
+  Req,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -14,7 +15,7 @@ import { UsersRepository } from './repository/users.repository';
 import { ProfilePhotoRepository } from './repository/profile-photo.repository';
 import { UserDto } from './dto/user.dto';
 import { CreateProfilePhotoDto } from './dto/profile-photo.dto';
-import { Express } from 'express';
+import { Express, Request } from 'express';
 
 @Controller('api/v1/user')
 export class UsersController {
@@ -52,7 +53,11 @@ export class UsersController {
         const isImage = file.originalname.match(imageFileRegex);
 
         if (!isImage) {
-          return callback(new Error('Only image files are allowed!'), false);
+          request.fileValidationErrorMessage = 'Only image files are allowed!';
+          request.fileValidationError = true;
+        } else {
+          request.fileValidationErrorMessage = '';
+          request.fileValidationError = false;
         }
 
         callback(null, true);
@@ -62,7 +67,17 @@ export class UsersController {
   uploadFile(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
+    @Req() request,
+    @Response() response
   ) {
+
+    if(request?.fileValidationError) {
+      return response.status(400).send(
+        {
+          message: [request.fileValidationErrorMessage]
+        });
+    }
+
     const profilePhoto: CreateProfilePhotoDto = {
       user_id: id,
       file_name: file.filename,
