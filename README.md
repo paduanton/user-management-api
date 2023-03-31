@@ -17,7 +17,7 @@ docker-compose up --build
 
 In **all** http calls you must have the header `Accept:application/json`. In http requests made with http POST verb you need to set the header `Content-Type:application/json`.
 
-On the root dir there is a file called user-service-v2.postman_collection.json that you can import in your postman to see the API requests, but here isis all the info about the endpoints anyway:
+On the root dir there is a file called user-management-api.postman_collection that you can import in your postman in order to see the API requests, but here it is all the info about the endpoints anyway:
 
 
 POST `http://localhost:3000/api/user)`:
@@ -80,8 +80,7 @@ POST `http://localhost:3000/api/user/:userId/photo)`:
     image: (your image)
 }
 ```json
-[
-    {
+{
     "user_id": "6425f4ac0801e6d66b99daaf",
     "file_system_path": "static/6425f4ac0801e6d66b99daaf.png",
     "file_name": "6425f4ac0801e6d66b99daaf.png",
@@ -90,7 +89,6 @@ POST `http://localhost:3000/api/user/:userId/photo)`:
     "updated_at": "2023-03-30T20:52:33.087Z",
     "__v": 0
 }
-]
 ```
 
 
