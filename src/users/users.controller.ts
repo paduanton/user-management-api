@@ -70,7 +70,6 @@ export class UsersController {
     @Req() request,
     @Response() response
   ) {
-    console.log("aqui")
     if(request?.fileValidationError) {
       return response.status(400).send(
         {
